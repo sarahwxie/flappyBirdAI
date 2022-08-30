@@ -7,6 +7,8 @@ class Player{
     this.velY = 0;
     this.velX = panSpeed;
     this.size = 20;
+    this.lift = 15;
+    this.dead = false;
   }
 
   // displays the player at the current position
@@ -14,6 +16,9 @@ class Player{
     // draws a circle
     noStroke();
     fill(255,255,0);
+    if (this.dead){
+      fill(255, 0, 0);
+    }
     ellipse(this.x,this.y,this.size);
   }
 
@@ -23,10 +28,34 @@ class Player{
     this.velY += gravity;
     this.y += this.velY;
 
-    // is this all that's needed to code gravity and velocity? (yes)
+    // makes the bird stop when it gets to the bottom of the screen
+    if (this.y > canvas.height){
+      this.y = canvas.height;
+      this.velY = 0;
+    }
+
+    if (this.y < 0){
+      this.y = canvas.height;
+      this.velY = 0;
+    }
+
+    // add limits to the velocity of the bird
+    if (this.velY > 10){
+      this.velY = 10
+    }
+    if (this.velY < -10){
+      this.velY = -10;
+    }
+
   }
 
   flap(){
-    this.velY -= 15;
+    this.velY -= this.lift;
   }
+
+  die(){
+    // make the bird fall to the Ground
+
+  }
+
 }
