@@ -1,14 +1,16 @@
 class Pipe {
   constructor(){
     this.width = 100;
-    this.height = floor(random(canvas.height - 230));
+    this.pipegap = 200;
+    this.height = floor(random(canvas.height - this.pipegap - 30));
     this.x = canvas.width
   }
 
   show(){
     fill(0, 204, 0);
-    rect(this.x, canvas.height - this.height, this.width, this.height);
-    rect(this.x, 0, this.width, canvas.height - this.height - 200);
+
+    image(bottomPipeSprite, this.x, canvas.height - this.height);
+    image(topPipeSprite, this.x,  canvas.height - this.height - this.pipegap - 800);
   }
 
   update(){
@@ -25,7 +27,7 @@ class Pipe {
 
   hits(player){
     // check to see if its hit a pipe
-    var hitTop = (player.y - 20) < (canvas.height - this.height - 200);
+    var hitTop = (player.y - 20) < (canvas.height - this.height - this.pipegap);
     var hitBottom = (player.y + 20) > (canvas.height - this.height);
 
     // check if it's in the pipe's x value
