@@ -45,13 +45,11 @@ function setup() {
 // the draw function iterates over and over
 function draw(){
   background(173,216,230);
-  player.update();
-  player.show();
   ground.update();
   ground.show();
 
   // ensure that the pipe apears every amount of frames
-  if (frameCount % pipeDistance == 0){
+  if ((frameCount % pipeDistance == 0) && (!player.dead)){
     pipes.push(new Pipe());
   }
 
@@ -63,8 +61,9 @@ function draw(){
     pipes[i].update();
 
     // collision detection
-    if (pipes[i].hits(player) ) {
-      player.die();
+    if (pipes[i].hits(player) || ground.collided(player) || player.y < ground.height - player.size) {
+      player.dead = true;
+      panSpeed = 0;
     }
 
     // this function is for when the pipe goes offscreen
@@ -73,6 +72,9 @@ function draw(){
       pipes.splice(i, 1);
     }
   }
+
+  player.update();
+  player.show();
 }
 
 // creates a function that causes the bird to flap

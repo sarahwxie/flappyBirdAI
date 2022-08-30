@@ -29,15 +29,11 @@ class Player{
     this.y += this.velY;
 
     // makes the bird stop when it gets to the bottom of the screen
-    if (this.y > canvas.height){
-      this.y = canvas.height;
+    if (this.y > canvas.height - this.size - 10){
+      this.y = canvas.height - this.size - 10;
       this.velY = 0;
     }
 
-    if (this.y < 0){
-      this.y = canvas.height;
-      this.velY = 0;
-    }
 
     // add limits to the velocity of the bird
     if (this.velY > 10){
@@ -50,12 +46,11 @@ class Player{
   }
 
   flap(){
-    this.velY -= this.lift;
+    if(this.dead == false){
+      this.velY -= this.lift;
+    }
   }
 
-  die(){
-    // make the bird fall to the Ground
 
-  }
 
 }
