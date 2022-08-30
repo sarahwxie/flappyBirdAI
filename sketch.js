@@ -1,5 +1,5 @@
 var panSpeed = 5; // the horizontal velocity
-var gravity = 5;
+var gravity = 0.5;
 var player;
 
 
@@ -13,7 +13,8 @@ function setup() {
   window.canvas = createCanvas(600,800);
 
   // start it in the middle of the canvas
-  player = new Player(200, canvas.height / 2);
+  player = new Player(canvas.width / 3, canvas.height / 2);
+  pipe = new Pipe();
 
 
 
@@ -22,6 +23,8 @@ function setup() {
 // the draw function iterates over and over
 function draw(){
   background(173,216,230);
+  pipe.update();
+  pipe.show();
   player.update();
   player.show();
 }

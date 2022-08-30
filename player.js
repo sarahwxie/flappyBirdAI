@@ -12,6 +12,7 @@ class Player{
   // displays the player at the current position
   show(){
     // draws a circle
+    noStroke();
     fill(255,255,0);
     ellipse(this.x,this.y,this.size);
   }
@@ -22,6 +23,10 @@ class Player{
     this.velY += gravity;
     this.y += this.velY;
 
-    // is this all that's needed to code gravity and velocity?
+    // is this all that's needed to code gravity and velocity? (yes)
+  }
+
+  flap(){
+    this.velY -= 15;
   }
 }
