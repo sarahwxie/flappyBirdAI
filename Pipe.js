@@ -42,4 +42,11 @@ class Pipe {
     }
   }
 
+  passedByPlayer(player){
+      // if right side of the pipe is at the players x value, add 1 to the score
+      if (this.x + this.width == player.x) {
+        player.score += 1;
+      }
+  }
+
 }

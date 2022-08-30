@@ -44,7 +44,7 @@ function setup() {
 
 // the draw function iterates over and over
 function draw(){
-  background(173,216,230);
+  image(backgroundSprite, 0, 0, canvas.width, canvas.height);
   ground.update();
   ground.show();
 
@@ -64,6 +64,11 @@ function draw(){
     if (pipes[i].hits(player) || ground.collided(player) || player.y < ground.height - player.size) {
       player.dead = true;
       panSpeed = 0;
+    }
+
+    //count the score
+    if (pipes[i].passedByPlayer(player)){
+      score += 1;
     }
 
     // this function is for when the pipe goes offscreen
